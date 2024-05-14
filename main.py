@@ -1,14 +1,8 @@
-# Bibliotecas utilizadas
-
-```python
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import pandas as pd
 import time 
-```
-# Iniciando o driver
 
-```python
 
 options = webdriver.ChromeOptions()
 
@@ -18,22 +12,12 @@ driver = webdriver.Chrome(options=options)
 driver.maximize_window()
 driver.get("https://rpachallenge.com/")
 
-```
-# Baixando o arquivo
-
-```python
 driver.find_element(By.XPATH, "//a[@class=' col s12 m12 l12 btn waves-effect waves-light uiColorPrimary center']").click()
 
-```
-# Carregando o arquivo
-```
 time.sleep(1)
 df = pd.read_excel("challenge.xlsx")
-```
-
-```python
-
 count_rows = df.shape[0]
+
 list_columns = df.columns
 columns = []
 for name in list_columns:
@@ -42,12 +26,6 @@ for name in list_columns:
     columns.append(new_name)
 columns
 
-
-```
-
-
-# Rodando a automação
-```python
 driver.find_element(By.XPATH, "//button[text()='Start']").click()
 
 for i in range(count_rows):
@@ -61,7 +39,4 @@ for i in range(count_rows):
         field.find_element(By.TAG_NAME, 'input').send_keys(str(df.iloc[i][index_column]))
     driver.find_element(By.XPATH, "//input[@class='btn uiColorButton']").click()
 
-
-
-```
 
